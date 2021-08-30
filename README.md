@@ -1,2 +1,2 @@
-# music-app
-参考国外音乐app的个人项目
+# react-template-project
+react项目的模板工程

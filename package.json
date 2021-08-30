@@ -1,0 +1,26 @@
+{
+  "name": "react-project-template",
+  "version": "1.0.0",
+  "description": "react项目的模板工程",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack-dev-server --progress --mode development ./build/dev.js",
+    "start": "npm run dev",
+    "build": "webpack ./build/prod.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/xzh97/react-project-template.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/xzh97/react-project-template/issues"
+  },
+  "homepage": "https://github.com/xzh97/react-project-template#readme",
+  "devDependencies": {
+    "webpack": "^5.51.1",
+    "webpack-cli": "^4.8.0"
+  }
+}
