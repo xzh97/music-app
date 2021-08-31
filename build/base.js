@@ -1,8 +1,8 @@
-
 const path = require('path')
 
 module.exports = {
-    entry: '../src/App.js',
+    mode: 'development',
+    entry: path.resolve(__dirname, '../src/App.js'),
     module: {
         rules:[
             {
@@ -17,10 +17,6 @@ module.exports = {
             {
                 test: /\.(scss)$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
-            },
-            {
-                test: /\.(js|jsx)$/,
-                use: 'babel-loader',
             },
             {
                 test:/\.(gif|jpg|jpeg|png|svg|webp|woff)$/,
@@ -38,11 +34,10 @@ module.exports = {
             '@': '../src',
         },
         extensions: ['js', 'jsx', 'json'],
-        modules: ['../src']
     },
     output: {
         filename: 'js/[name].[hash:7].js',
         chunkFilename: 'js/[name].[hash:7].chunk.js',
-        path: path.resolve(__dirname, 'dist/')
+        path: path.resolve(__dirname, '../dist/')
     }
 }

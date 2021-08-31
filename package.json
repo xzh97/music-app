@@ -4,9 +4,10 @@
   "description": "react项目的模板工程",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-cli --progress --mode development ./build/dev.js",
+    "dev": "cross-env appenv=dev webpack-cli --progress --mode development ./build/dev.js",
     "start": "npm run dev",
-    "build": "webpack ./build/prod.js"
+    "build": "npm run rm && cross-env appEnv=dev webpack-cli build --config ./build/index.js",
+    "rm": "rimraf dist/*"
   },
   "repository": {
     "type": "git",
@@ -25,18 +26,20 @@
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
     "babel-loader": "^8.2.2",
-    "css-loader": "^6.2.0",
-    "css-minimizer-webpack-plugin": "^3.0.2",
-    "mini-css-extract-plugin": "^2.2.0",
+    "cross-env": "^7.0.3",
+    "css-loader": "^5.2.7",
+    "mini-css-extract-plugin": "^1.6.2",
     "node-sass": "^6.0.1",
-    "sass-loader": "^12.1.0",
-    "style-loader": "^3.2.1",
-    "terser-webpack-plugin": "^5.1.4",
+    "rimraf": "^3.0.2",
+    "sass-loader": "^10.2.0",
+    "style-loader": "^2.0.0",
+    "terser-webpack-plugin": "^4.2.3",
     "url-loader": "^4.1.1",
-    "webpack": "^5.51.1",
+    "webpack": "^4.46.0",
     "webpack-cli": "^4.8.0"
   },
   "dependencies": {
-    "@babel/runtime": "^7.15.3"
+    "@babel/runtime": "^7.15.3",
+    "optimize-css-assets-webpack-plugin": "^6.0.1"
   }
 }

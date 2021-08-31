@@ -12,6 +12,10 @@ const merge = (source, obj) => {
     }
 }
 
+const isPlainObject = (obj) => {
+    
+}
+
 module.exports = {
     merge
 }

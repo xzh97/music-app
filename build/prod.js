@@ -1,7 +1,7 @@
 const baseConfig = require('./base');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin');
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 const prodConfig = {
     mode: 'production',
@@ -11,6 +11,18 @@ const prodConfig = {
             chunkFilename: 'css/[name].[hash:7].chunk.css'
         })
     ],
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
+            {
+                test: /\.(scss)$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+            },
+        ]
+    },
     optimization:{
         minimize: true,
         minimizer: [
@@ -23,7 +35,7 @@ const prodConfig = {
                 },
                 extractComments: false,
             }),
-            new CssMinimizerPlugin()
+            new OptimizeCssAssetsPlugin()
         ],
         splitChunks: {
             chunks: 'async',
@@ -50,4 +62,6 @@ const prodConfig = {
 }
 
 const prodFinalConfig = Object.assign({}, baseConfig, prodConfig)
+
+console.log('prodFinalConfig', prodFinalConfig);
 module.exports = prodFinalConfig
