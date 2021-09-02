@@ -5,9 +5,7 @@ const devConfig = {
         hot: true, // 开启热更新
         host: 'localhost',
         port: 3030,
-        open: true,
-        publicPath: '/',
-        overlay: true,
+        open: false,
     }
 }
 

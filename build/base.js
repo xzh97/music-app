@@ -1,12 +1,12 @@
 const path = require('path')
-
+const htmlPlugin = require('html-webpack-plugin')
 module.exports = {
     mode: 'development',
-    entry: path.resolve(__dirname, '../src/App.js'),
+    entry: path.resolve(__dirname, '../src/entry.js'),
     module: {
         rules:[
             {
-                test: /\.(js|jsx)$/,
+                test: /\.js$/,
                 use: 'babel-loader',
                 exclude: /node_modules/,
             },
@@ -15,7 +15,7 @@ module.exports = {
                 use: ['style-loader', 'css-loader'],
             },
             {
-                test: /\.(scss)$/,
+                test: /\.scss$/,
                 use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
@@ -35,6 +35,12 @@ module.exports = {
         },
         extensions: ['js', 'jsx', 'json'],
     },
+    plugins: [
+        new htmlPlugin({
+            template: path.resolve(__dirname, '../public/index.html'),
+            filename: 'index.html',
+        })
+    ],
     output: {
         filename: 'js/[name].[hash:7].js',
         chunkFilename: 'js/[name].[hash:7].chunk.js',

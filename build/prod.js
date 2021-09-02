@@ -11,18 +11,18 @@ const prodConfig = {
             chunkFilename: 'css/[name].[hash:7].chunk.css'
         })
     ],
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader'],
-            },
-            {
-                test: /\.(scss)$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-            },
-        ]
-    },
+    // module: {
+    //     rules: [
+    //         {
+    //             test: /\.css$/,
+    //             use: [MiniCssExtractPlugin.loader, 'css-loader'],
+    //         },
+    //         {
+    //             test: /\.(scss)$/,
+    //             use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+    //         },
+    //     ]
+    // },
     optimization:{
         minimize: true,
         minimizer: [
@@ -63,5 +63,4 @@ const prodConfig = {
 
 const prodFinalConfig = Object.assign({}, baseConfig, prodConfig)
 
-console.log('prodFinalConfig', prodFinalConfig);
 module.exports = prodFinalConfig
