@@ -1,9 +1,24 @@
 {
     "presets": [
-        "@babel/preset-env",
+        [
+            "@babel/preset-env",
+            {
+                "targets":{
+                    "chrome": 60,
+                    "firefox": 40,
+                    "ie": 10
+                }
+            }
+        ],
         "@babel/preset-react"
     ],
     "plugins": [
-        "@babel/plugin-transform-runtime"
+        [
+            "@babel/plugin-transform-runtime",
+            {
+            "corejs": 2, 
+            "useBuildIns":"usage"
+          }
+        ]
     ]
 }

@@ -1,20 +1,33 @@
-import React from 'react'
-
+import React from 'react';
+import { HashRouter as Router, Route, Switch, Redirect, Link } from "react-router-dom"
+import Home from '@/views/home/index'
+import Profile from '@/views/profile/index'
 class App extends React.Component {
-    constructor(){
+    constructor(props){
         super(props)
         this.state = {
-            text: 'hello world！'
+            text: 'app container'
         }
     }
     render(){
-        let {text} = this.state;
         return (
-            <div className="app-container">
-                <p>{ text }</p>
+            <div className='app-container'>
+                {this.state.text}
+                <Router>
+                    <Link to="/index">Home</Link>
+                    <Link to="/profile">Profile</Link>
+
+                    <Switch>
+                        <Route exact path={'/index'} component={Home}></Route>
+                        <Route exact path={'/profile'} component={Profile}></Route>
+                        <Redirect from='/' to='/index'></Redirect>
+
+                    </Switch>
+                </Router>
             </div>
         )
     }
 }
 
 export default App
+

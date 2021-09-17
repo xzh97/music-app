@@ -1,5 +1,5 @@
 module.exports = {
-    appEnv: 'dev', //sit, stage, uat, prod
+    appEnv: 'dev',
     apiUrl: 'http://localhost:3000',
     
 }

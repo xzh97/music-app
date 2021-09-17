@@ -1,22 +1,16 @@
 const path = require('path')
 const htmlPlugin = require('html-webpack-plugin')
+const resolve = (filepath) => {
+    return path.resolve(__dirname, filepath)
+}
 module.exports = {
-    mode: 'development',
-    entry: path.resolve(__dirname, '../src/entry.js'),
+    entry: resolve('../src/entry.js'),
     module: {
         rules:[
             {
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 use: 'babel-loader',
                 exclude: /node_modules/,
-            },
-            {
-                test: /\.css$/,
-                use: ['style-loader', 'css-loader'],
-            },
-            {
-                test: /\.scss$/,
-                use: ['style-loader', 'css-loader', 'sass-loader'],
             },
             {
                 test:/\.(gif|jpg|jpeg|png|svg|webp|woff)$/,
@@ -31,19 +25,22 @@ module.exports = {
     },
     resolve:{
         alias:{
-            '@': '../src',
+            '@': resolve('../src'),
         },
-        extensions: ['js', 'jsx', 'json'],
+        extensions: ['.js', '.jsx', '.json'],
     },
     plugins: [
         new htmlPlugin({
-            template: path.resolve(__dirname, '../public/index.html'),
-            filename: 'index.html',
+            template: resolve('../public/index.html'),
+            filename: resolve('../dist/index.html'),
+            inject: true,
+            hash: true,
         })
     ],
     output: {
         filename: 'js/[name].[hash:7].js',
         chunkFilename: 'js/[name].[hash:7].chunk.js',
-        path: path.resolve(__dirname, '../dist/')
+        path: resolve('../dist/'),
+        publicPath: '/'
     }
 }

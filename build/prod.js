@@ -1,3 +1,4 @@
+const { merge } = require('webpack-merge')
 const baseConfig = require('./base');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserPlugin = require('terser-webpack-plugin');
@@ -11,18 +12,18 @@ const prodConfig = {
             chunkFilename: 'css/[name].[hash:7].chunk.css'
         })
     ],
-    // module: {
-    //     rules: [
-    //         {
-    //             test: /\.css$/,
-    //             use: [MiniCssExtractPlugin.loader, 'css-loader'],
-    //         },
-    //         {
-    //             test: /\.(scss)$/,
-    //             use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-    //         },
-    //     ]
-    // },
+    module: {
+        rules: [
+            {
+                test: /\.css$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader'],
+            },
+            {
+                test: /\.scss$/,
+                use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+            },
+        ]
+    },
     optimization:{
         minimize: true,
         minimizer: [
@@ -30,7 +31,7 @@ const prodConfig = {
                 parallel: 4,
                 terserOptions:{
                     compress:{
-                        drop_console: true,
+                        drop_console: false,
                     }
                 },
                 extractComments: false,
@@ -61,6 +62,6 @@ const prodConfig = {
     },
 }
 
-const prodFinalConfig = Object.assign({}, baseConfig, prodConfig)
+const prodFinalConfig = merge(baseConfig, prodConfig)
 
 module.exports = prodFinalConfig

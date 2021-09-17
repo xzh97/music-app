@@ -1,8 +1,15 @@
-const devConfig = require('./dev.js')
-const prodConfig = require('./prod.js')
+const { merge } = require('webpack-merge')
+
+const devConfig = require('./dev')
+const prodConfig = require('./prod')
+const baseConfig = require('./base')
 
 console.log('appEnv ', process.env.appEnv);
-let finalConfig = process.env.appEnv === 'dev' ? devConfig : prodConfig
+let configMap = {
+    dev: devConfig,
+    prod: prodConfig,
+}
+let finalConfig = merge(baseConfig, configMap[process.env.appEnv])
 
-console.log('finalConfig', finalConfig.module.rules);
+console.log('finalConfig', finalConfig);
 module.exports = finalConfig
